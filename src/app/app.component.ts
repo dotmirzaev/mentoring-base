@@ -13,10 +13,10 @@ const newPages = [5, 4, 3, 2, 1]
 
 
 const upperCaseNames = names.map (
-  (name) => {
-    console.log(name.toUpperCase());
-    return name.toUpperCase();
-  }
+    (name) => {
+        console.log(name.toUpperCase());
+        return name.toUpperCase();
+    }
 )
 
 
@@ -28,9 +28,8 @@ const upperCaseNames = names.map (
 })
 
 export class AppComponent {
-  title = 'mentoring-base';
-  isShowImg = true;
+    title = 'mentoring-base';
+    isShowImg = true;
 
-  readonly newPages = newPages;
-
+    readonly newPages = newPages;
 }

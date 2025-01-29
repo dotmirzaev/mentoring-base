@@ -7,11 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(),
-    provideAnimations(),
-    MatButtonModule,
-    MatIconModule
-  ]
+    providers: [
+        provideRouter(routes),
+        provideHttpClient(),
+        provideAnimations(),
+        MatButtonModule,
+        MatIconModule
+    ]
 };

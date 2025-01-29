@@ -27,16 +27,16 @@ export class TodosService {
     }
 
     createTodo(todo: Todo) {
-      const existingTodo = this.todosSubject.value.find(
-        currentElement => currentElement.title === todo.title
-      );
+        const existingTodo = this.todosSubject.value.find(
+            currentElement => currentElement.title === todo.title
+        );
 
-      if(existingTodo !== undefined) {
-        alert('Такая задача уже есть')
-      } else {
-        this.todosSubject.next([...this.todosSubject.value, todo]);
-        alert('Новая задача успешно добавлена')
-      }
+        if(existingTodo !== undefined) {
+            alert('Такая задача уже есть')
+        } else {
+            this.todosSubject.next([...this.todosSubject.value, todo]);
+            alert('Новая задача успешно добавлена')
+        }
     }
 
     deleteTodo(id: number) {

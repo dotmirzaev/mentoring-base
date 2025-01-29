@@ -10,9 +10,9 @@ aboutCompani('О компании');
 const menuItems = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
 
 const upperCaseMenuItems = menuItems.map (
-  (item) => {
-    return item.toUpperCase();
-  }
+    (item) => {
+        return item.toUpperCase();
+    }
 )
 
 // const upperCaseNames = names.map (
@@ -33,40 +33,40 @@ const upperCaseMenuItems = menuItems.map (
 
 export class HeaderComponent {
 
-  isShowCatalog = true;
+    isShowCatalog = true;
 
-  readonly aboutCompany = 'О компании'
+    readonly aboutCompany = 'О компании'
 
-  readonly isUpperCaseMenu = upperCaseMenuItems;
+    readonly isUpperCaseMenu = upperCaseMenuItems;
 
-  readonly headerItem1 = 'Главная';
+    readonly headerItem1 = 'Главная';
 
-  readonly headerItem2 = 'О компании';
+    readonly headerItem2 = 'О компании';
 
-  readonly headerItem3 = 'Каталог';
+    readonly headerItem3 = 'Каталог';
 
-  readonly headerItem4 = 'Пользователи'
+    readonly headerItem4 = 'Пользователи'
 
-  readonly headerItem5 = 'Todos'
+    readonly headerItem5 = 'Todos'
 
-  readonly header2Item1 = 'Каталог';
+    readonly header2Item1 = 'Каталог';
 
-  readonly header2Item2 = 'Стройматериалы';
+    readonly header2Item2 = 'Стройматериалы';
 
-  readonly header2Item3 = 'Инструменты';
+    readonly header2Item3 = 'Инструменты';
 
-  readonly header2Item4 = 'Электрика';
+    readonly header2Item4 = 'Электрика';
 
-  readonly header2Item5 = 'Интерьер и одежда';
+    readonly header2Item5 = 'Интерьер и одежда';
 
-  menuItems = upperCaseMenuItems;
+    menuItems = upperCaseMenuItems;
 
-  isUpperCase = false;
+    isUpperCase = false;
 
-  changeMenuText() {
-    this.menuItems = upperCaseMenuItems.map(
-      item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase ()
-    )
-  this.isUpperCase = !this.isUpperCase
-  }
+    changeMenuText() {
+        this.menuItems = upperCaseMenuItems.map(
+        item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase ()
+        )
+    this.isUpperCase = !this.isUpperCase
+    }
 }

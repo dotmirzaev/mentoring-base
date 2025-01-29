@@ -14,21 +14,21 @@ import { MatSelectModule } from '@angular/material/select';
     imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule]
 })
 export class CreateTodoFormComponent {
-  @Output()
-  createTodo = new EventEmitter();
+    @Output()
+    createTodo = new EventEmitter();
 
-  public form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    userId: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    completed: new FormControl('', [Validators.required, Validators.pattern('true|false')]),
-  });
+    public form = new FormGroup({
+        title: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        userId: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        completed: new FormControl('', [Validators.required, Validators.pattern('true|false')]),
+    });
 
-  public submitForm(): void {
-    this.createTodo.emit(this.form.value);
-    this.form.reset();
-  }
+    public submitForm(): void {
+        this.createTodo.emit(this.form.value);
+        this.form.reset();
+    }
 
-  constructor() {
-    this.form.valueChanges.subscribe(formValue => console.log(formValue ));
-  }
-}
+    constructor() {
+        this.form.valueChanges.subscribe(formValue => console.log(formValue ));
+    }
+    }

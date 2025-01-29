@@ -60,11 +60,11 @@
                     align-items: start;
 
                     &-inner {
-                      flex-direction: column;
-                      display: flex;
-                      padding: 4px 0px 0px 0px;
-                      gap: 8px;
-                      margin-left: 15px;
+                        flex-direction: column;
+                        display: flex;
+                        padding: 4px 0px 0px 0px;
+                        gap: 8px;
+                        margin-left: 15px;
                     }
                 }
             }
@@ -171,10 +171,10 @@
 }
 
 .text {
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
-  color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: #FFFFFF;
 }
 
 .title {

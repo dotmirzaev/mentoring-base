@@ -16,22 +16,22 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 export class CreateUserFormComponent {
-  @Output()
-  createUser = new EventEmitter();
+    @Output()
+    createUser = new EventEmitter();
 
     public form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      website: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      companyName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        website: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        companyName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     });
 
     public submitForm(): void {
-      this.createUser.emit(this.form.value);
-      this.form.reset();
+        this.createUser.emit(this.form.value);
+        this.form.reset();
     }
 
     constructor() {
-      this.form.valueChanges.subscribe(formValue => console.log(formValue ));
+        this.form.valueChanges.subscribe(formValue => console.log(formValue ));
     }
 }

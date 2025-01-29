@@ -9,27 +9,27 @@ import { CreateUserFormComponent } from "../create-user-form/create-user-form.co
 import { MatButtonModule } from "@angular/material/button";
 
 export interface User {
-  "id": number,
-  "name": string,
-  "username"?: string,
-  "email": string,
-  "address"?: {
-      "street": string,
-      "suite": string,
-      "city": string,
-      "zipcode": number,
-      "geo": {
-          "lat": string,
-          "lng": string
+    "id": number,
+    "name": string,
+    "username"?: string,
+    "email": string,
+    "address"?: {
+        "street": string,
+        "suite": string,
+        "city": string,
+        "zipcode": number,
+        "geo": {
+            "lat": string,
+            "lng": string
+        }
+    },
+    "phone"?: number,
+    "website": string,
+    "company": {
+        "name": string,
+        "catchPhrase"?: string,
+        "bs"?: string
     }
-  },
-  "phone"?: number,
-  "website": string,
-  "company": {
-      "name": string,
-      "catchPhrase"?: string,
-      "bs"?: string
-  }
 }
 
 @Component({
@@ -57,15 +57,15 @@ export class UsersListComponent {
     }
 
     public createUser(formData: any) {
-      this.usersService.createUser({
-        id: new Date().getTime(),
-        name: formData.name,
-        email: formData.email,
-        website: formData.website,
-        company: {
-          name: formData.companyName,
-        }
-      });
+        this.usersService.createUser({
+            id: new Date().getTime(),
+            name: formData.name,
+            email: formData.email,
+            website: formData.website,
+            company: {
+            name: formData.companyName,
+            }
+        });
 
       console.log('Данные формы: ', event);
     };

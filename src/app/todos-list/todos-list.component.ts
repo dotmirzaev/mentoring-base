@@ -8,10 +8,10 @@ import { ChangeDetectionStrategy } from "@angular/core";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 
 export interface Todo {
-  "userId": number,
-  "id": number,
-  "title": string,
-  "completed": boolean,
+    "userId": number,
+    "id": number,
+    "title": string,
+    "completed": boolean,
 }
 
 @Component({
@@ -29,9 +29,9 @@ export class TodosListComponent {
 
     constructor() {
         this.todosApiService.getTodos().subscribe(
-          (response: any) => {
-              this.todosService.setTodos(response);
-          }
+            (response: any) => {
+                this.todosService.setTodos(response);
+            }
       )
     }
 
@@ -40,12 +40,12 @@ export class TodosListComponent {
     }
 
     public createTodo(formData: any) {
-      this.todosService.createTodo({
-        id: new Date().getTime(),
-        title: formData.title,
-        userId: formData.userId,
-        completed: formData.completed,
-      });
+        this.todosService.createTodo({
+            id: new Date().getTime(),
+            title: formData.title,
+            userId: formData.userId,
+            completed: formData.completed,
+        });
     }
 
     getTodosAuthor(id: number) {

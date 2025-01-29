@@ -13,7 +13,7 @@ const newPages = [5, 4, 3, 2, 1]
 
 export class HomepageComponent {
 
-  isShowImg = true;
+    isShowImg = true;
 
-  readonly newPages = newPages;
+    readonly newPages = newPages;
 }
