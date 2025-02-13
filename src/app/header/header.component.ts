@@ -1,11 +1,6 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component, isStandalone } from "@angular/core";
-import { RouterLink, RouterOutlet } from "@angular/router";
-
-
-const aboutCompani = (text: string) => console.log(text);
-
-aboutCompani('О компании');
+import { RouterLink } from "@angular/router";
 
 const menuItems = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
 
@@ -28,7 +23,8 @@ const upperCaseMenuItems = menuItems.map (
     selector: 'app-header',
     imports: [NgFor, NgIf, RouterLink],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+    styleUrl: './header.component.scss',
+    standalone: true,
 })
 
 export class HeaderComponent {

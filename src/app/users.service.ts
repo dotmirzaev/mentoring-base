@@ -1,15 +1,16 @@
 import {Injectable} from "@angular/core";
-import { User } from "./users-list/users-list.component";
 import { BehaviorSubject } from "rxjs";
+import { User } from "./user.interface";
 
 
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
     usersSubject = new BehaviorSubject<User[]>([]);
+    users$: any = this.usersSubject.asObservable()
 
     setUsers(users: User[]) {
-      this.usersSubject.next(users);
+        this.usersSubject.next(users);
     }
 
     editUser(editedUser: User) {
@@ -37,7 +38,6 @@ export class UsersService {
             alert('Такой email уже зарегистрирован')
         } else {
             this.usersSubject.next([...this.usersSubject.value, user]);
-            alert('Новый пользователь успешно добавлен')
         }
     }
 

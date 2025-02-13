@@ -1,76 +1,73 @@
-import { NgFor } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { NgFor, AsyncPipe } from "@angular/common";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
-import { AsyncPipe } from "@angular/common";
 import { UsersService } from "../users.service";
-import { ChangeDetectionStrategy } from "@angular/core";
-import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";
+import { User } from "../user.interface";
 
-export interface User {
-    "id": number,
-    "name": string,
-    "username"?: string,
-    "email": string,
-    "address"?: {
-        "street": string,
-        "suite": string,
-        "city": string,
-        "zipcode": number,
-        "geo": {
-            "lat": string,
-            "lng": string
-        }
-    },
-    "phone"?: number,
-    "website": string,
-    "company": {
-        "name": string,
-        "catchPhrase"?: string,
-        "bs"?: string
-    }
-}
 
 @Component({
     selector: 'app-users-list',
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
-    imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent, MatButtonModule],
+    standalone: true,
+    imports: [NgFor, UserCardComponent, AsyncPipe, MatButtonModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UsersListComponent {
     readonly usersApiService = inject(UsersApiService)
     readonly usersService = inject(UsersService)
+    readonly dialog = inject(MatDialog)
+    readonly snackBar = inject(MatSnackBar)
 
     constructor() {
-        this.usersApiService.getUsers().subscribe(
-            (response: any) => {
-                this.usersService.setUsers(response);
-            }
-        );
-    }
+        this.usersApiService.getUsers().subscribe((respons: User[]) => {
+            this.usersService.setUsers(respons);
+        });
+
+        this.usersService.users$.subscribe((user: User) => console.log(user));
+    };
 
     deleteUser(id: number) {
         this.usersService.deleteUser(id);
-    }
-
-    public createUser(formData: any) {
-        this.usersService.createUser({
-            id: new Date().getTime(),
-            name: formData.name,
-            email: formData.email,
-            website: formData.website,
-            company: {
-            name: formData.companyName,
-            }
-        });
-
-      console.log('Данные формы: ', event);
     };
 
-    getTodosAuthor(id: number) {
+    openDialog(): void {
+        const dialogRef = this.dialog.open(CreateUserDialogComponent);
 
+        dialogRef.afterClosed().subscribe((createResult) => {
+            if (createResult) {
+                this.usersService.createUser({
+                id: new Date().getTime(),
+                name: createResult.name,
+                email: createResult.email,
+                company: {
+                    name: createResult.companyName,
+                },
+                website: createResult.website,
+                });
+                this.snackBar.open('Пользователь успешно создан!', 'Ок', {
+                duration: 3000
+                })
+            }else {
+                this.snackBar.open('Ошибка! Пользователь не создан', 'Ок', {
+                duration: 3000
+                })
+            }
+        })
+    };
+
+    editUser(user: any) {
+        this.usersService.editUser({
+            ...user,
+            company: {
+                name: user.companyName,
+            }
+        })
     }
 }
