@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     templateUrl: "./todo-card.component.html",
     styleUrls: ["./todo-card.component.scss"],
     standalone : true,
-    imports: [ReactiveFormsModule]
+    imports: [ReactiveFormsModule, TruncatePipe]
 })
 
 

@@ -1,0 +1,74 @@
+<div class="footer">
+    <div class="content-container_footer">
+        <div class="footer-blok">
+            <div class="footer-blok-contacts">
+                <div class="footer-blok-contacts-logo">
+                    <img src="assets/logo.svg" alt="логотип">
+                </div>
+                <div class="footer-blok-contacts-info">
+                    <div class="footer-blok-contacts-info_phone">
+                        <div class="footer-blok-contacts-info_phone_icon">
+                            <img src="assets/call.svg" alt="телефон">
+                        </div>
+                        <div class="footer-blok-contacts-info_phone-inner">
+                            <span class="title">Контактный телефон</span>
+                            <a [href]="'tel:' + ('+7-812-309-09-34' | removeDashes)" class="phone-number">
+                                {{ '+7-812-309-09-34' | removeDashes }}
+                            </a>
+                            <a [href]="'tel:' + ('+7-965-084-29-09' | removeDashes)" class="phone-number">
+                                {{ '+7-965-084-29-09' | removeDashes }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-blok-contacts-info_mail">
+                        <div class="footer-blok-contacts-info_mail_icon">
+                            <img src="assets/mail.svg" alt="почта">
+                        </div>
+                        <div class="footer-blok-contacts-info_mail-inner">
+                            <span class="title">Электронная почта</span>
+                            <a href="mailto:tustin78@mail.ru" class="text">tustin78&#64;mail.ru</a>
+                            <a href="mailto:info@tustin.ru" class="text">info.tustin&#64;ru</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-inline-vertical"></div>
+
+            <div class="footer-email">
+                <h3 class="footer-email-title">Остались вопросы?</h3>
+                <p class="footer-email-label">Узнавайте первым о скидках, предложениях и событиях еженедельно в своем
+                    почтовом ящике. Отпишитесь в любое время одним щелчком мыши.</p>
+                <form class="footer-email-wrapper">
+                    <img src="assets/mail.svg" alt="почта" class="footer-email-wrapper-icon">
+                    <input type="email" placeholder="Введите свою почту" class="footer-email-wrapper-input">
+                    <button type="submit" class="footer-email-wrapper-submit">Отправить</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <nav class="header-nav">
+                <a class="header-nav-item">Главная</a>
+                <a class="header-nav-item">О компании</a>
+                <a class="header-nav-item">Каталог</a>
+            </nav>
+            <div class="footer-nav-info">
+                <div class="footer-nav-socials">
+                    <a>
+                        <img src="assets/facebook.svg" alt="фейсбук">
+                    </a>
+                    <a>
+                        <img src="assets/youtube.svg" alt="ютуб">
+                    </a>
+                    <a>
+                        <img src="assets/whatsapp.svg" alt="ватсап">
+                    </a>
+                </div>
+                <div>© 2021-2022, EDE</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-inline-horizontal"></div>
+</div>

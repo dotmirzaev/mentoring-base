@@ -1,6 +1,6 @@
 <div todo-card-container>
     <p>Текст Задачи</p>
-    <div>{{todo.title}}</div>
+    <div>{{todo.title | truncate:20}}</div>
 
     <p>Автор Задачи</p>
     <div>{{todo.userId}}</div>

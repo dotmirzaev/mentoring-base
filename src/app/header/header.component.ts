@@ -1,6 +1,8 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component, isStandalone } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { DatePipe } from "@angular/common";
+import { YellowDirective } from "../directives/yellow.directive";
 
 const menuItems = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
 
@@ -21,7 +23,7 @@ const upperCaseMenuItems = menuItems.map (
 
 @Component({
     selector: 'app-header',
-    imports: [NgFor, NgIf, RouterLink],
+    imports: [NgFor, NgIf, RouterLink, DatePipe, YellowDirective],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     standalone: true,
@@ -56,6 +58,8 @@ export class HeaderComponent {
     readonly header2Item5 = 'Интерьер и одежда';
 
     menuItems = upperCaseMenuItems;
+
+    readonly today: Date = new Date();
 
     isUpperCase = false;
 

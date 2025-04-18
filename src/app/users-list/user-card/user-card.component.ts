@@ -3,12 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
+import { hintDirective } from "../../directives/hint.directive";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: "app-user-card",
     templateUrl: "./user-card.component.html",
     styleUrls: ["./user-card.component.scss"],
-    standalone : true
+    standalone : true,
+    imports: [hintDirective, MatTooltipModule]
 })
 
 export class UserCardComponent {
