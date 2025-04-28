@@ -10,10 +10,12 @@
                     <a class="header-nav-item" *ngIf="isShowCatalog">{{headerItem3}}</a>
                     <a class="header-nav-item" routerLink="users">{{headerItem4}}</a>
                     <a class="header-nav-item" routerLink="todos">{{headerItem5}}</a>
+                    <a class="header-nav-item" routerLink="admin">{{headerItem6}}</a>
+
                 </nav>
             </div>
-        <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
-        <button (click)="changeMenuText()">Изменить текст</button>
+        <!-- <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
+        <button (click)="changeMenuText()">Изменить текст</button> -->
 
         <div class="header-right">
             <div class="header-Phone">
@@ -31,6 +33,11 @@
                 </div>
                 <span>Пусто </span>
             </button>
+            <span class="date">{{ today | date:'medium' }}</span>
+            <div>
+                <button (click)="openDialog()" class="button" *ngIf="(userService.user$ |async) === null">Войти</button>
+                <button (click)="logout()" class="button" *ngIf="(userService.user$ |async) !== null">Выйти</button>
+            </div>
         </div>
     </div>
     </div>
@@ -52,7 +59,6 @@
             <div class="menu-right-plece">
                 <img src="/assets/map.svg" alt="место">
                 <span>Москва</span>
-                <span>{{ today | date:'medium' }}</span>
             </div>
         </div>
     </div>

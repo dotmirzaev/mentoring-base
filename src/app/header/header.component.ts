@@ -1,8 +1,10 @@
-import { NgFor, NgIf } from "@angular/common";
-import { Component, isStandalone } from "@angular/core";
+import { AsyncPipe, NgFor, NgIf, DatePipe } from "@angular/common";
+import { Component, inject, isStandalone } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { DatePipe } from "@angular/common";
 import { YellowDirective } from "../directives/yellow.directive";
+import { MatDialog } from "@angular/material/dialog";
+import { AuthComponent } from "../auth/auth.component";
+import { UserService } from "../user.service";
 
 const menuItems = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда']
 
@@ -23,13 +25,41 @@ const upperCaseMenuItems = menuItems.map (
 
 @Component({
     selector: 'app-header',
-    imports: [NgFor, NgIf, RouterLink, DatePipe, YellowDirective],
+    imports: [NgFor, NgIf, RouterLink, DatePipe, YellowDirective, AsyncPipe],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
     standalone: true,
 })
 
 export class HeaderComponent {
+
+    private readonly dialog = inject(MatDialog);
+    public readonly userService = inject (UserService)
+
+    public openDialog(): void {
+        const dialogRef = this.dialog.open(AuthComponent, {
+            width: "400px",
+            height: "200px"
+        });
+
+        dialogRef.afterClosed().subscribe((result: string) => {
+            console.log('Резутат подписки после диал. окна', result)
+            if (result === 'admin') {
+                this.userService.loginAsAdmin()
+            } else if (result === 'user') {
+                this.userService.loginAsUser()
+            } else return undefined;
+        });
+    }
+
+    public logout() {
+        if (confirm('Вы точно хотите выйти?')) {
+            console.log('совершили logout')
+            return this.userService.logout();
+        }
+        else return false;
+    }
+
 
     isShowCatalog = true;
 
@@ -45,7 +75,9 @@ export class HeaderComponent {
 
     readonly headerItem4 = 'Пользователи'
 
-    readonly headerItem5 = 'Todos'
+    readonly headerItem5 = 'Todos';
+
+    readonly headerItem6 = 'Admin'
 
     readonly header2Item1 = 'Каталог';
 
