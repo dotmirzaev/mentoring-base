@@ -23,12 +23,10 @@ export class UserService {
 
     loginAsAdmin() {
         this.userSubject$.next({...this.user, isAdmin: true})
-        console.log('Вошли как админ')
     }
 
     loginAsUser() {
         this.userSubject$.next({...this.user, isAdmin: false})
-        console.log('Вошли как пользователь')
     }
 
     get isAdmin() {
@@ -37,7 +35,6 @@ export class UserService {
 
     logout() {
         this.userSubject$.next(null)
-        console.log(this.userSubject$)
     }
 
 }

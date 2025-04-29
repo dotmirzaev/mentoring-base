@@ -43,21 +43,13 @@ export class HeaderComponent {
         });
 
         dialogRef.afterClosed().subscribe((result: string) => {
-            console.log('Резутат подписки после диал. окна', result)
-            if (result === 'admin') {
-                this.userService.loginAsAdmin()
-            } else if (result === 'user') {
-                this.userService.loginAsUser()
-            } else return undefined;
+            result === 'admin' ? this.userService.loginAsAdmin() :
+            result === 'user' ? this.userService.loginAsUser() : null;
         });
     }
 
     public logout() {
-        if (confirm('Вы точно хотите выйти?')) {
-            console.log('совершили logout')
-            return this.userService.logout();
-        }
-        else return false;
+        return confirm('Вы точно хотите выйти?') ? this.userService.logout() : false;
     }
 
 
