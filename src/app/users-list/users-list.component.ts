@@ -8,6 +8,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";
 import { User } from "../user.interface";
+import { Store } from "@ngrx/store";
+import { UserActions } from "./store/users.actions";
+import { selectorUsers } from "./store/users.selectors";
 
 
 @Component({
@@ -24,10 +27,13 @@ export class UsersListComponent {
     readonly usersService = inject(UsersService)
     readonly dialog = inject(MatDialog)
     readonly snackBar = inject(MatSnackBar)
+    private readonly store = inject (Store)
+    public readonly users$ = this.store.select(selectorUsers);
 
     constructor() {
         this.usersApiService.getUsers().subscribe((respons: User[]) => {
             this.usersService.setUsers(respons);
+            this.store.dispatch(UserActions.set({ users: respons}));
         });
 
         this.usersService.users$.subscribe((user: User) => console.log(user));
@@ -35,6 +41,7 @@ export class UsersListComponent {
 
     deleteUser(id: number) {
         this.usersService.deleteUser(id);
+        this.store.dispatch(UserActions.delete({ id }));
     };
 
     openDialog(): void {
@@ -68,6 +75,33 @@ export class UsersListComponent {
             company: {
                 name: user.companyName,
             }
-        })
+        });
+        this.store.dispatch(UserActions.edit({ user }));
+    }
+
+    public createUser(formData: any) {
+        this.usersService.createUser({
+            id: new Date().getTime(),
+            name: formData.name,
+            email: formData.email,
+            website: formData.website,
+            company: {
+                name: formData.companyName,
+            }
+        });
+        this.store.dispatch(
+            UserActions.create({
+                user: {
+                    id: new Date().getTime(),
+                    name: formData.name,
+                    email: formData.email,
+                    website: formData.website,
+                    company: {
+                        name: formData.companyName,
+                    }
+                }
+            })
+        )
     }
 }
+

@@ -1,7 +1,7 @@
 <app-create-todo-form (createTodo)="createTodo($event)"></app-create-todo-form>
 
 <div class="todos-container">
-    <div class="todos-card" *ngFor="let todo of todosService.todosSubject | async">
+    <div class="todos-card" *ngFor="let todo of todos$ | async">
         <app-todo-card [todo] = "todo"></app-todo-card>
         <button (click)="deleteTodo(todo.id)">Удалить задачу</button>
     </div>

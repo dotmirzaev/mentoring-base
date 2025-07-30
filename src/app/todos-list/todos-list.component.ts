@@ -3,16 +3,12 @@ import { Component, inject } from "@angular/core";
 import { TodosApiService } from "../todos-api.service";
 import { TodoCardComponent } from "./todo-card/todo-card.component";
 import { AsyncPipe } from "@angular/common";
-import { TodosService } from "../todos.service";
 import { ChangeDetectionStrategy } from "@angular/core";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
-
-export interface Todo {
-    "userId": number,
-    "id": number,
-    "title": string,
-    "completed": boolean,
-}
+import { Store } from "@ngrx/store";
+import { Todo } from "../todo.interface";
+import { TodoActions } from "./store/todo.actions";
+import { selectorTodos } from "./store/todos.selectors";
 
 @Component({
     selector: 'app-todos-list',
@@ -23,32 +19,37 @@ export interface Todo {
 })
 
 export class TodosListComponent {
-    readonly todosApiService = inject(TodosApiService)
-    readonly todosService = inject(TodosService)
-
+    readonly todosApiService = inject(TodosApiService);
+    private readonly store = inject(Store);
+    public readonly todos$ = this.store.select(selectorTodos);
 
     constructor() {
-        this.todosApiService.getTodos().subscribe(
-            (response: any) => {
-                this.todosService.setTodos(response);
-            }
-      )
-    }
-
-    deleteTodo(id: number) {
-        this.todosService.deleteTodo(id);
-    }
-
-    public createTodo(formData: any) {
-        this.todosService.createTodo({
-            id: new Date().getTime(),
-            title: formData.title,
-            userId: formData.userId,
-            completed: formData.completed,
+        this.todosApiService.getTodos().subscribe((response: any) => {
+            this.store.dispatch(TodoActions.set({ todos: response as Todo[] }));
         });
     }
 
+    deleteTodo(id: number) {
+        this.store.dispatch(TodoActions.delete({ id }));
+    }
+
+    public createTodo(formData: any) {
+        this.store.dispatch(TodoActions.create({
+            todo: {
+                id: new Date().getTime(),
+                title: formData.title,
+                userId: formData.userId,
+                completed: formData.completed,
+            }
+        }));
+    }
+
+    editTodo(todo: Todo) {
+        this.store.dispatch(TodoActions.edit({ todo }));
+    }
+
     getTodosAuthor(id: number) {
+        // Реализация по необходимости
     }
 }
 
