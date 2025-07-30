@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { Todo } from '../../todo.interface';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 export class TodoCardComponent {
     @Input()
-    todo: any
+    todo!: Todo
 
     @Output()
     deleteTodo = new EventEmitter();

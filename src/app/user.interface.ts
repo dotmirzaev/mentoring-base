@@ -21,3 +21,14 @@ export interface User {
         "bs"?: string
     }
 }
+
+export interface CreateUserFormData {
+    name: string;
+    email: string;
+    website: string;
+    companyName: string;
+}
+
+export interface EditUserFormData extends CreateUserFormData {
+    id: number;
+}

@@ -6,7 +6,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy } from "@angular/core";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 import { Store } from "@ngrx/store";
-import { Todo } from "../todo.interface";
+import { Todo, CreateTodoFormData } from "../todo.interface";
 import { TodoActions } from "./store/todo.actions";
 import { selectorTodos } from "./store/todos.selectors";
 
@@ -24,8 +24,8 @@ export class TodosListComponent {
     public readonly todos$ = this.store.select(selectorTodos);
 
     constructor() {
-        this.todosApiService.getTodos().subscribe((response: any) => {
-            this.store.dispatch(TodoActions.set({ todos: response as Todo[] }));
+        this.todosApiService.getTodos().subscribe((responce: Todo[]) => {
+            this.store.dispatch(TodoActions.set({ todos: responce }));
         });
     }
 
@@ -33,13 +33,13 @@ export class TodosListComponent {
         this.store.dispatch(TodoActions.delete({ id }));
     }
 
-    public createTodo(formData: any) {
+    public createTodo(formData: CreateTodoFormData) {
         this.store.dispatch(TodoActions.create({
             todo: {
                 id: new Date().getTime(),
                 title: formData.title,
-                userId: formData.userId,
-                completed: formData.completed,
+                userId: Number(formData.userId),
+                completed: formData.completed === 'true',
             }
         }));
     }
@@ -49,7 +49,6 @@ export class TodosListComponent {
     }
 
     getTodosAuthor(id: number) {
-        // Реализация по необходимости
     }
 }
 

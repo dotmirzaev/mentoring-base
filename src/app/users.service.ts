@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "./user.interface";
 
 
@@ -7,7 +7,7 @@ import { User } from "./user.interface";
 @Injectable({providedIn: 'root'})
 export class UsersService {
     usersSubject = new BehaviorSubject<User[]>([]);
-    users$: any = this.usersSubject.asObservable()
+    users$: Observable<User[]> = this.usersSubject.asObservable()
 
     setUsers(users: User[]) {
         this.usersSubject.next(users);

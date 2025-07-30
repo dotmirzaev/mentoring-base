@@ -5,6 +5,7 @@ import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.co
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 import { hintDirective } from "../../directives/hint.directive";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { User } from '../../user.interface';
 
 @Component({
     selector: "app-user-card",
@@ -16,7 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 export class UserCardComponent {
     @Input()
-    user: any
+    user!: User
 
     @Output()
     deleteUser = new EventEmitter();

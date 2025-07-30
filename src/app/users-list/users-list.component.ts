@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";
-import { User } from "../user.interface";
+import { User, CreateUserFormData } from "../user.interface";
 import { Store } from "@ngrx/store";
 import { UserActions } from "./store/users.actions";
 import { selectorUsers } from "./store/users.selectors";
@@ -31,12 +31,12 @@ export class UsersListComponent {
     public readonly users$ = this.store.select(selectorUsers);
 
     constructor() {
-        this.usersApiService.getUsers().subscribe((respons: User[]) => {
-            this.usersService.setUsers(respons);
-            this.store.dispatch(UserActions.set({ users: respons}));
+        this.usersApiService.getUsers().subscribe((responce: User[]) => {
+            this.usersService.setUsers(responce);
+            this.store.dispatch(UserActions.set({ users: responce}));
         });
 
-        this.usersService.users$.subscribe((user: User) => console.log(user));
+        this.usersService.users$.subscribe((users: User[]) => console.log(users));
     };
 
     deleteUser(id: number) {
@@ -69,26 +69,18 @@ export class UsersListComponent {
         })
     };
 
-    editUser(user: any) {
+    editUser(user: User) {
         this.usersService.editUser({
             ...user,
             company: {
-                name: user.companyName,
+                name: user.company.name,
             }
         });
         this.store.dispatch(UserActions.edit({ user }));
     }
 
-    public createUser(formData: any) {
-        this.usersService.createUser({
-            id: new Date().getTime(),
-            name: formData.name,
-            email: formData.email,
-            website: formData.website,
-            company: {
-                name: formData.companyName,
-            }
-        });
+    public createUser(formData: CreateUserFormData) {
+
         this.store.dispatch(
             UserActions.create({
                 user: {
