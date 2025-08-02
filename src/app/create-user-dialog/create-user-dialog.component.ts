@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { UserFormData } from '../user.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { NgIf } from '@angular/common';

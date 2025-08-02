@@ -20,7 +20,7 @@ export class CreateTodoFormComponent {
     public form = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.minLength(2)]),
         userId: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        completed: new FormControl('', [Validators.required, Validators.pattern('true|false')]),
+        completed: new FormControl(false, [Validators.required]),
     });
 
     public submitForm(): void {

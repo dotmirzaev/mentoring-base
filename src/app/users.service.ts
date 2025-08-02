@@ -7,7 +7,7 @@ import { User } from "./user.interface";
 @Injectable({providedIn: 'root'})
 export class UsersService {
     usersSubject = new BehaviorSubject<User[]>([]);
-    users$: Observable<User[]> = this.usersSubject.asObservable()
+    users$: Observable<User[]> = this.usersSubject.asObservable();
 
     setUsers(users: User[]) {
         this.usersSubject.next(users);

@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";
-import { User, CreateUserFormData } from "../user.interface";
+import { User, UserFormData } from "../user.interface";
 import { Store } from "@ngrx/store";
 import { UserActions } from "./store/users.actions";
 import { selectorUsers } from "./store/users.selectors";
@@ -79,7 +79,7 @@ export class UsersListComponent {
         this.store.dispatch(UserActions.edit({ user }));
     }
 
-    public createUser(formData: CreateUserFormData) {
+    public createUser(formData: UserFormData) {
 
         this.store.dispatch(
             UserActions.create({

@@ -17,7 +17,7 @@ import { User } from '../../user.interface';
 
 export class UserCardComponent {
     @Input()
-    user!: User
+    user!: User;
 
     @Output()
     deleteUser = new EventEmitter();

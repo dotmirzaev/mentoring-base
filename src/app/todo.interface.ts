@@ -8,5 +8,5 @@ export interface Todo {
 export interface CreateTodoFormData {
     title: string;
     userId: string;
-    completed: string;
+    completed: boolean;
 }

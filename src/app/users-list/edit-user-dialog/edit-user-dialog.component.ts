@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef,} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
-import { User } from '../../user.interface';
+import { User, UserFormData } from '../../user.interface';
 
 @Component({
     selector: 'app-edit-user-dialog',
@@ -32,10 +32,14 @@ export class EditUserDialogComponent {
         companyName: new FormControl(this.data.user.company.name, [Validators.required, Validators.minLength(2)])
     });
 
-    get userWithUpdateFields () {
+    get userWithUpdateFields (): UserFormData {
+        const formValue = this.form.value;
         return {
-        ...this.form.value,
-        id: this.data.user.id
+            id: this.data.user.id,
+            name: formValue.name || '',
+            email: formValue.email || '',
+            website: formValue.website || '',
+            companyName: formValue.companyName || ''
         }
     }
 }

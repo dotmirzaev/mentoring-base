@@ -22,13 +22,10 @@ export interface User {
     }
 }
 
-export interface CreateUserFormData {
+export interface UserFormData {
+    id?: number;
     name: string;
     email: string;
     website: string;
     companyName: string;
-}
-
-export interface EditUserFormData extends CreateUserFormData {
-    id: number;
 }

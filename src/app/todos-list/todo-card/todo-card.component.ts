@@ -15,7 +15,7 @@ import { Todo } from '../../todo.interface';
 
 export class TodoCardComponent {
     @Input()
-    todo!: Todo
+    todo!: Todo;
 
     @Output()
     deleteTodo = new EventEmitter();

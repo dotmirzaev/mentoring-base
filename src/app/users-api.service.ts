@@ -8,6 +8,6 @@ export class UsersApiService {
     readonly apiService = inject(HttpClient);
 
     getUsers(): Observable<User[]> {
-        return this.apiService.get<User[]>('https://jsonplaceholder.typicode.com/users')
+        return this.apiService.get<User[]>('https://jsonplaceholder.typicode.com/users');
     }
 }

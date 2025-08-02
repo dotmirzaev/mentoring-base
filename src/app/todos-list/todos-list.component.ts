@@ -39,7 +39,7 @@ export class TodosListComponent {
                 id: new Date().getTime(),
                 title: formData.title,
                 userId: Number(formData.userId),
-                completed: formData.completed === 'true',
+                completed: formData.completed,
             }
         }));
     }
