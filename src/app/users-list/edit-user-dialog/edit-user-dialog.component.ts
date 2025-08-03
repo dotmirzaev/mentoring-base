@@ -36,10 +36,10 @@ export class EditUserDialogComponent {
         const formValue = this.form.value;
         return {
             id: this.data.user.id,
-            name: formValue.name || '',
-            email: formValue.email || '',
-            website: formValue.website || '',
-            companyName: formValue.companyName || ''
+            name: formValue.name!,
+            email: formValue.email!,
+            website: formValue.website!,
+            companyName: formValue.companyName!
         }
     }
 }
